@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilita - Cadastro</title>
+</head>
+<body>
+           <header>
+      <nav>
+        <h1>Facilita</h1>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html" class="active">Cadastro</a></li>
+
+        </ul>
+      </nav>
+   </header>
+
+   <main>
+    <section class="register_section">
+        <h2>Crie sua conta</h2>
+        <form action="" id="regiter_form">
+            <label for="nome">Insira seu nome:</label>
+            <input type="text" name="nome" id="nome" required/>
+
+            <label for="email">Insira um e-mail válido:</label>
+            <input type="email" name="email" id="email" placeholder="exemplo@email.com" required/>
+
+            <label for="senha">Insira uma senha segura:</label>
+            <input type="password" name="senha" id="senha">
+            
+            <label for="tipo">Você é:</label>
+            <select name="tipo" id="tipo">
+                <option value="client">Cliente</option>
+                <option value="transport">Transportador</option>
+            </select>
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p>Já tem conta? <a href="login.html">Faça login</a></p>
+    </section>
+   </main>
+</body>
+</html>

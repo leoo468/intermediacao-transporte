@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facilita - Dashboard</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Facilita</h1>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="#" id="logout_btn">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Seção clientes -->
+         <section id="client_dashboard" class="hidd">
+            <h2>Boas vindas, <span id="client_name"></span></h2>
+            <button id="cadastrar_frete_btn">Cadastrar Novo Frete</button>
+            <!-- Formulario -->
+             <div id="form_frete" class="hidden">
+                <h3>Novo Frete</h3>
+                <form action="" id="cad_frete_form">
+                    <label for="origem">Origem:</label>
+                    <input type="text" name="origem" id="origem" required/>
+
+                    <label for="destino">Destino:</label>
+                    <input type="text" name="destino" id="destino" required/>
+
+                    <label for="tipo">Tipo do produto:</label>
+                    <select name="tipo" id="tipo" required/>
+                        <option value="1">Carga viva</option>
+                        <option value="2">Grãos e cereais</option>
+                        <option value="3">Produtos perecíveis</option>
+                        <option value="4">Medicamentos</option>
+                        <option value="5">Veículos</option>
+                        <option value="6">Eletrônicos</option>
+                    </select>
+
+                    <label for="descricao">Descrição breve da carga:</label>
+                    <input type="text" name="descricao" id="descricao" required/>
+                    
+                    <button type="submit">Cadastrar frete</button>
+                </form>
+             </div>
+             <!-- Listra frete dos clientes -->
+              <h3>Meus Fretes</h3>
+              <table id="tabela_frete_cliente">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tipo</th>
+                        <th>Origem</th>
+                        <th>Destino</th>
+                        <th>Propostas</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+              </table>
+         </section>
+    </main>
+</body>
+</html>
