@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tabelaFreteCliente = document.querySelector("#tabela_frete_cliente tbody");
     
     // API de geolocalização (OpenCage)
-    const API_KEY = "SUA_CHAVE_AQUI";
+    const API_KEY = "41cbcd77d85642d0a003c105ba513798";
 
     async function obterCoordenadas(endereco) {
         const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(endereco)}&key=${API_KEY}`;
@@ -86,9 +86,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Logout
     if (logoutBtn) {
         logoutBtn.addEventListener("click", () => {
-            localStorage.removeItem("usuarioLogado");
-            alert("Logout realizado!");
-            window.location.href = "index.html";
+           if(confirm("Deseja mesmo apagar os dados? Esta ação é irreverssivel! ")){
+            localStorage.clear();
+            alert("Todos os dados foram apagados com sucesso!");
+            window.location.href = "index.html"
+           }
         });
     }
 

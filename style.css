@@ -70,7 +70,17 @@ body {
     justify-content: center;
     align-items: center;   
 }
-
+.icon img{
+    width: 50px;
+}
+.icon{
+width: 50px;
+left: 0;
+transform: translateX(-5vw);
+justify-content: center;
+align-items: center;
+cursor: pointer;
+}
 #toggle-theme{
     background: var(--buttons);
     color: var(--text-color);
@@ -88,6 +98,71 @@ body {
     color: var(--buttons);
 }
 .hero{
+    display: flex;
+    border-radius: 5px;
+    justify-content: center;
     background: url('./img/mao.jpg') no-repeat center center/cover;
     height: 96vh;
+}
+.hero_infos{
+    text-align: center;
+}
+.hero_infos h2{
+    margin-bottom: 10px;
+    font-size: 1.9rem;
+    color: var(--alerts);
+}
+
+.hero_infos p{
+color: var(--alerts);
+font-size: 1em;
+}
+
+.hero__links{
+    display: flex;
+    justify-content: center;
+    
+    margin-top: 10px;
+    gap: 10px;
+    flex-direction: column;
+}
+.btn{
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--text-color);
+    transition: 0.3s ease;
+    background-color: var(--buttons);
+}
+.btn:hover{
+    background-color: var(--text-color);
+    color: var(--buttons);
+    border-radius: 5px;
+    text-decoration: underline;
+}
+
+.features{
+    display: flex;
+    flex-direction: column;
+}
+.features h3{
+    text-align: center;
+    font-size: 1.4rem;
+}
+.feature_item h4{
+    font-size: 1.3rem;
+}
+.feature_item p{
+    font-size: 1rem;
+}
+.feature_item{
+    margin-top: 10px;
+    align-items: center;
+    text-wrap: wrap;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+}
+
+.about{
+    background: #000;
 }
