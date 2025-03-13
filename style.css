@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+IN:wght@100..400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Press+Start+2P&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+a{
+    text-decoration: none;
+
+}
+li{
+    list-style: none;
+}
+:root{
+    --bg-color: #ffff;
+    --text-color: #333;
+    --header-bg: #007bff;
+    --buttons: #ff6a13;
+    --alerts: #28a745;
+    --errors: #dc3545;
+}
+.dark-mode{
+    --bg-color: #242424;
+    --text-color: #f0f0f0;
+    --header-bg: #0056b3;
+    --buttons: #ff6a13;
+    --alerts: #28a745;
+    --errors: #dc3545;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+.navbar{
+    background: var(--header-bg);
+    display: flex;
+    justify-content: center;
+    color: var(--text-color);
+    height: 8vh;
+    border-radius: 3px;
+    align-items: center;
+}
+.title{
+    cursor: pointer;
+}
+.title:hover{
+    text-decoration: underline;
+}
+.navbar ul {
+    display: flex;
+    justify-content: space-around; 
+     color: var(--text-color);
+     gap: 20px;
+    align-items: center;
+}
+.nav_link{
+    color: var(--text-color);
+}
+.nav_link:hover{
+    text-decoration: underline;
+
+}
+.navbar ul li {
+    display: flex;
+    color: var(--text-color);
+    justify-content: center;
+    align-items: center;   
+}
+
+#toggle-theme{
+    background: var(--buttons);
+    color: var(--text-color);
+    border: none;
+    padding: 8px 8px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px; 
+    transition: 0.3s ease;
+}
+
+#toggle-theme:hover{
+    background: var(--text-color);
+    box-shadow: rgba(1,1,1,1);
+    color: var(--buttons);
+}
+.hero{
+    background: url('./img/mao.jpg') no-repeat center center/cover;
+    height: 96vh;
+}
