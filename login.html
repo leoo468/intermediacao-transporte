@@ -8,27 +8,32 @@
 </head>
 <body>
        <header>
-      <nav>
-        <h1>Facilita</h1>
+      <nav class="navbar">
+        <div class="icon"><img src="./img/facilita_icon.png" alt=""></div>
+ 
         <ul>
         <li><a href="index.html" class="nav_link">Inicio</a></li>
         <li><a href="login.html" id="active" class="nav_link">Login</a></li>
+       <h1>Facilita</h1>
         <li><a href="register.html" class="nav_link">Cadastro</a></li>
-
+        <li><button id="toggle-theme">🌙</button></li>
         </ul>
       </nav>
    </header>
 <main>
     <section class="login_section">
-        <h2>Entrar</h2>
+        
         <form action="" id="login_form">
+            <h2>Entrar</h2>
             <label for="email">Insira seu e-mail:</label>
             <input type="email" name="email" id="email" required/>
 
             <label for="password">Insira sua senha:</label>
             <input type="password" name="senha" id="senha" required/>
             <button type="submit">Login</button>
-            <p>Não possui conta? <a href="register.html">Fazer registro</a></p>
+            <div class="redirect_container">
+                <p>Não possui conta? </p><a href="register.html" class="btn">Fazer registro</a></div>
+            
         </form>
     </section>
 </main>

@@ -1,8 +1,10 @@
-const toggleTheme = document.getElementById("toggle-theme");
 
 
 document.addEventListener("DOMContentLoaded", () => {
     // Seleção de elementos do DOM
+        const toggleTheme = document.getElementById("toggle-theme");
+
+
     const loginForm = document.getElementById("login_form");
     const registerForm = document.getElementById("register_form");
     const logoutBtn = document.getElementById("logout_btn");
@@ -180,10 +182,27 @@ document.addEventListener("DOMContentLoaded", () => {
     // Atualiza a tabela de fretes ao carregar a página
     if (tabelaFreteCliente) {
         atualizarTabelaFretes();
-    }
-});
+    }  
+    // Tema
+    function updateEmoji(){
+        if(document.body.classList.contains("dark-mode")){
+            toggleTheme.textContent = "☀️";
+            localStorage.setItem("theme", "dark");
 
-toggleTheme.addEventListener("click" , () =>{
+        } else{
+            toggleTheme.textContent = "🌙";
+            localStorage.setItem("theme", "light");
+        }
+    }
+    if(localStorage.getItem("theme") === "dark"){
+        document.body.classList.add("dark-mode");
+    }
+    updateEmoji();
+  
+    toggleTheme.addEventListener("click" , () =>{
      document.body.classList.toggle("dark-mode");
+     updateEmoji();
  
 })
+});
+

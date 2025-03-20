@@ -8,12 +8,15 @@
 </head>
 <body>
            <header>
-      <nav>
-        <h1>Facilita</h1>
+      <nav class="navbar">
         <ul>
+                    <div class="icon"><img src="img/facilita_icon.png"></div>
+
           <li><a href="index.html" class="nav_link">Inicio</a></li>
-        <li><a href="login.html" class="nav_link">Login</a></li>
+        <li><a href="login.html" class="nav_link">Login</a></li>       
+         <h1>Facilita</h1>
         <li><a href="register.html" id="active" class="nav_link">Cadastro</a></li>
+        <li><button id="toggle-theme">🌙</button></li>
 
         </ul>
       </nav>
@@ -21,8 +24,9 @@
 
    <main>
     <section class="register_section">
-        <h2>Crie sua conta</h2>
-        <form action="" id="regiter_form">
+        
+        <form action="" id="register_form">
+            <h2>Crie sua conta</h2>
             <label for="nome">Insira seu nome:</label>
             <input type="text" name="nome" id="nome" required/>
 
@@ -38,8 +42,11 @@
                 <option value="transport">Transportador</option>
             </select>
             <button type="submit">Cadastrar</button>
+            <div class="redirect_container">
+                 <p>Já tem conta? </p><a href="login.html" class="btn">Faça login</a>
+            </div>
         </form>
-        <p>Já tem conta? <a href="login.html">Faça login</a></p>
+       
     </section>
    </main>
     <script src="app.js"></script>

@@ -17,6 +17,7 @@ li{
     --bg-color: #ffff;
     --text-color: #333;
     --header-bg: #007bff;
+    --form: #3389e498;
     --buttons: #ff6a13;
     --alerts: #28a745;
     --errors: #dc3545;
@@ -25,6 +26,7 @@ li{
     --bg-color: #242424;
     --text-color: #f0f0f0;
     --header-bg: #0056b3;
+        --form: #3389e475;
     --buttons: #ff6a13;
     --alerts: #28a745;
     --errors: #dc3545;
@@ -163,6 +165,178 @@ font-size: 1em;
     justify-content: center;
 }
 
-.about{
+footer{
     background: #000;
+    color: white;
+    display: flex;
+}
+
+#about{
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+#about .btn{
+    margin-bottom: 10px;
+}
+
+.login_section, .register_section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#login_form, #register_form{
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    justify-content: center;
+    position: absolute;
+    align-items: center;
+    transform: translate(-50%,-50%);
+    background: var(--form);
+}
+#register_form{
+    transform: translate(-50%, -43%);
+}
+
+#register_form select{
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+     justify-content: center;
+    border: 1px solid #ccc;
+}
+
+
+#login_form h2, #register_form h2{
+    margin-bottom: 10px;
+}
+
+#login_form input, #register_form input{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+#login_form button, #register_form button{
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    width: 100%;
+    border: none;
+    background: var(--buttons);
+    color: var(--text-color);
+    transition: 0.3s ease;
+}
+#login_form button:hover, #register_form button:hover{
+    text-decoration: underline;
+    color: var(--buttons);
+    background: var(--text-color);
+    cursor: pointer;
+    border-radius: 10px;
+}
+.redirect_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+.redirect_container p{
+    margin-bottom: 10px;
+}
+
+#client_dashboard{
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+}
+#cad_frete_form{
+    background: var(--form);
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#cad_frete_form input, #cad_frete_form select{
+    width: 70%;
+    height: 4vh;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+ #cad_frete_form select{
+    text-align: center;
+ }
+/* 
+ #cad_frete_form option{
+ } */
+
+ #cad_frete_form label{
+    text-decoration: underline;
+    box-shadow: rgba(0, 0, 0, 0.158);
+ }
+
+ #tabela_frete_cliente table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+ }
+ #tabela_frete_cliente th, #tabela_frete_cliente td{
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+ }
+ #tabela_frete_cliente th{
+    background: var(--header-bg);
+    color: white;
+ }
+ #logout_btn:hover{
+    background-color: #000;
+    padding: 10px;
+    border-radius: 5px;
+    color: var(--errors);
+ }
+@media(max-width: 768px){
+    body{
+        overflow-x: none;
+    }
+    #mobbile_hidden{
+        display: none;
+    }
+    .navbar{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+    }
+    #toggle-theme{
+        display: none;
+    }
+
+    #about{
+        height: 15vh;
+        margin-top: 10px;
+    }
+    footer{
+        margin-top: 10px;
+    }
+    .icon{
+        transform: translateY(20px);
+        transform: translateX(0);
+    }
 }
