@@ -14,6 +14,7 @@
                 <li><a href="index.html" class="nav_link">Inicio</a></li>
                 <h1>Facilita</h1>
                 <li><a href="#" id="logout_btn" class="nav_link">Apagar dados</a></li>
+                <li><a href="#" id="sair_btn" class="nav_link">Sair</a></li>
             </ul>
         </nav>
     </header>
@@ -21,8 +22,8 @@
     <main>
         <!-- Seção clientes -->
          <section id="client_dashboard" class="hidd">
-            <h2>Boas vindas, <span id="client_name"></span></h2>
-            <button id="cadastrar_frete_btn">Cadastrar Novo Frete</button>
+            <h2>Boas Vindas, <span id="client_name"></span></h2>
+            <button id="cadastrar_frete_btn" type="submit">Cadastrar Novo Frete</button>
             <!-- Formulario -->
              <div id="form_frete" class="hidden">
                 <h3>Novo Frete</h3>
@@ -49,7 +50,7 @@
                     <button type="submit">Cadastrar frete</button>
                 </form>
              </div>
-             <!-- Listra frete dos clientes -->
+             <!-- Lista frete dos clientes -->
               <h3>Meus Fretes</h3>
               <table id="tabela_frete_cliente">
                 <thead>
@@ -58,8 +59,10 @@
                         <th>Tipo</th>
                         <th>Origem</th>
                         <th>Destino</th>
+                        <th>Descrição</th>
                         <th>Propostas</th>
                         <th>Status</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>

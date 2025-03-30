@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Seleção de elementos do DOM
         const toggleTheme = document.getElementById("toggle-theme");
 
-
+    const clientNameSpan = document.getElementById("client_name");
     const loginForm = document.getElementById("login_form");
     const registerForm = document.getElementById("register_form");
     const logoutBtn = document.getElementById("logout_btn");
@@ -12,7 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const formFrete = document.getElementById("form_frete");
     const cadFreteForm = document.getElementById("cad_frete_form");
     const tabelaFreteCliente = document.querySelector("#tabela_frete_cliente tbody");
-    
+    const sairBtn  = document.getElementById("sair_btn")
+    const dashboardBtn = document.getElementById("dashboard_btn");
     // API de geolocalização (OpenCage)
     const API_KEY = "41cbcd77d85642d0a003c105ba513798";
 
@@ -85,6 +86,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function exibirNomeUsuario(){
+        const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+        if (usuarioLogado && clientNameSpan){
+            clientNameSpan.textContent = usuarioLogado.nome;
+        }
+    }
+
+    if(clientNameSpan){
+        exibirNomeUsuario();
+    }
+
     // Logout
     if (logoutBtn) {
         logoutBtn.addEventListener("click", () => {
@@ -95,7 +107,34 @@ document.addEventListener("DOMContentLoaded", () => {
            }
         });
     }
+    if (sairBtn){
+        sairBtn.addEventListener("click", () => {
+            if(confirm("Deseja mesmo sair da conta?")){
+                localStorage.removeItem("usuarioLogado");
+                alert("Você saiu da sua conta.");
+                window.location.href = "index.html";
+            }
+        })
+    }
+    //Verificar acesso ao dashboard
+    function verificarAcessoDashBoard() {
+        const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
+        if(!usuarioLogado && window.location.pathname.includes("dashboard.html")){
+            alert("Você precisa ter uma conta para acessar a dashboard!");
+            window.location.href = "register.html";
+        }
+
+        if(dashboardBtn){
+            if(!usuarioLogado){
+                dashboardBtn.setAttribute("disabled", "true");
+                dashboardBtn.style.opacity = "0.5";
+            } else{
+                dashboardBtn.removeAttribute("dasabled")
+            }
+        }
+    }
+    verificarAcessoDashBoard();
     // Dashboard do Cliente
     if (cadastrarFreteBtn) {
         cadastrarFreteBtn.addEventListener("click", () => {
@@ -153,13 +192,42 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>${frete.tipo}</td>
                 <td>${frete.origem} (${frete.coordenadas.origem.lat}, ${frete.coordenadas.origem.lng})</td>
                 <td>${frete.destino} (${frete.coordenadas.destino.lat}, ${frete.coordenadas.destino.lng})</td>
+                <td>${frete.descricao}</td>
                 <td>R$ ${calcularFrete(frete.coordenadas.origem, frete.coordenadas.destino)}</td>
                 <td>${frete.status}</td>
+                <td><button class="excluir_frete_btn" data-id="${frete.id}">❌ Excluir</button></td>
             `;
             tabelaFreteCliente.appendChild(row);
         });
+        adicionarEventosExcluir();
     }
+function adicionarEventosExcluir() {
+  document.querySelectorAll(".excluir_frete_btn").forEach((botao) => {
+    botao.addEventListener("click", function () {
+      const idFrete = parseInt(this.getAttribute("data-id")); // Obtém o ID do frete
+      if (
+        confirm(
+          "Tem certeza que deseja excluir esta proposta? Esta ação não pode ser desfeita!"
+        )
+      ) {
+        removerFrete(idFrete);
+      }
+    });
+  });
+}
 
+// Função para remover um frete do LocalStorage e atualizar a tabela
+function removerFrete(idFrete) {
+  let fretes = obterDados("fretes");
+  fretes = fretes.filter((frete) => frete.id !== idFrete); // Remove o frete da lista
+  salvarDados("fretes", fretes); // Atualiza o LocalStorage
+  atualizarTabelaFretes(); // Atualiza a tabela na tela
+}
+
+// Chamada inicial para exibir a tabela corretamente
+if (tabelaFreteCliente) {
+  atualizarTabelaFretes();
+}
     // Função para calcular distância e estimar preço do frete
     function calcularFrete(origem, destino) {
         const R = 6371; // Raio da Terra em km
