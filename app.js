@@ -1,9 +1,6 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
     // Seleção de elementos do DOM
-        const toggleTheme = document.getElementById("toggle-theme");
-
+     const toggleTheme = document.getElementById("toggle-theme");
     const clientNameSpan = document.getElementById("client_name");
     const loginForm = document.getElementById("login_form");
     const registerForm = document.getElementById("register_form");
@@ -130,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 dashboardBtn.setAttribute("disabled", "true");
                 dashboardBtn.style.opacity = "0.5";
             } else{
-                dashboardBtn.removeAttribute("dasabled")
+                dashboardBtn.removeAttribute("disabled")
             }
         }
     }
@@ -190,16 +187,30 @@ document.addEventListener("DOMContentLoaded", () => {
             row.innerHTML = `
                 <td>${frete.id}</td>
                 <td>${frete.tipo}</td>
-                <td>${frete.origem} (${frete.coordenadas.origem.lat}, ${frete.coordenadas.origem.lng})</td>
-                <td>${frete.destino} (${frete.coordenadas.destino.lat}, ${frete.coordenadas.destino.lng})</td>
+                <td>${frete.origem} (${frete.coordenadas.origem.lat}, ${
+              frete.coordenadas.origem.lng
+            })</td>
+                <td>${frete.destino} (${frete.coordenadas.destino.lat}, ${
+              frete.coordenadas.destino.lng
+            })</td>
                 <td>${frete.descricao}</td>
-                <td>R$ ${calcularFrete(frete.coordenadas.origem, frete.coordenadas.destino)}</td>
+                <td>R$ ${calcularFrete(
+                  frete.coordenadas.origem,
+                  frete.coordenadas.destino
+                )}</td>
                 <td>${frete.status}</td>
-                <td><button class="excluir_frete_btn" data-id="${frete.id}">❌ Excluir</button></td>
+                <td><button class="excluir_frete_btn" data-id="${
+                  frete.id
+                }">❌ Excluir</button>
+                <button class="gerar_nf_btn" data-id="${
+                  frete.id
+                }">📋 Gerar NF-E</button>
+                </td>
             `;
             tabelaFreteCliente.appendChild(row);
         });
         adicionarEventosExcluir();
+        adicionarEventosNFe();
     }
 function adicionarEventosExcluir() {
   document.querySelectorAll(".excluir_frete_btn").forEach((botao) => {
@@ -214,6 +225,53 @@ function adicionarEventosExcluir() {
       }
     });
   });
+}
+// Gerar NF-e
+function gerarNfe(frete){
+    const {jsPDF} = window.jspdf;
+    const doc = new jsPDF();
+
+    const dataAtual = new Date().toLocaleDateString()
+    doc.setFont("helvetica", "bold");
+    doc.text("Nota Fiscal Eletrônica (NF-e) Facilita", 50, 20);
+
+    doc.setFont("helvetica", "bold");
+
+    doc.text(`Nome do Cliente: ${JSON.parse(localStorage.getItem("usuarioLogado")).nome}`, 10, 40);
+    doc.text(`Data: ${dataAtual}`, 10, 50);
+    doc.text(`Tipo da Carga: ${frete.tipo}`, 10, 60);
+    doc.text(`Origem: ${frete.origem}`, 10, 70);
+    doc.text(`Destino: ${frete.destino}`, 10, 80);	
+    doc.text(`Descrição: ${frete.descricao}`, 10, 90);
+
+    const valorBruto = parseFloat(calcularFrete(frete.coordenadas.origem, frete.coordenadas.destino));
+    const impostos = (valorBruto * 0.15).toFixed(2); //15% do valor
+    const valorLiquido = (valorBruto - impostos).toFixed(2);
+    
+    doc.text(`Valor Bruto: R$ ${valorBruto}`, 10, 100);
+    doc.text(`Impostos (15%): R$ ${impostos}`, 10, 110);
+    doc.text(`Valor Líquido: R$ ${valorLiquido}`, 10, 120)
+
+    
+    //Salva e baixa PDF
+    doc.save(`NFe_Frete_${frete.id}.pdf`)
+}
+
+// Evento NFe
+function adicionarEventosNFe(){
+    document.querySelectorAll(".gerar_nf_btn").forEach((botao) => {
+        botao.addEventListener("click", function(){
+            const idFrete = parseInt(this.getAttribute("data-id"));
+            const fretes = obterDados("fretes");
+            const freteSelecionado = fretes.find(f => f.id === idFrete);
+            if(freteSelecionado){
+                gerarNfe(freteSelecionado);
+            } else{
+                alert("Erro ao gerar NF-e: Frete não encontrado")
+                return(console.log("Erro ao gerar NF-e"))
+            }
+        })
+    })
 }
 
 // Função para remover um frete do LocalStorage e atualizar a tabela
